@@ -16,9 +16,9 @@ var serverCmd = &cobra.Command{
 }
 
 // 启动服务
-var startCmd = &cobra.Command{
-	Use:   "start [flags]",
-	Short: "server start [flags]",
+var upCmd = &cobra.Command{
+	Use:   "up [flags]",
+	Short: "server up [flags]",
 	Run: func(cmd *cobra.Command, args []string) {
 		daemon, _ := cmd.Flags().GetBool("daemon")
 		fmt.Println(daemon)
@@ -28,11 +28,11 @@ var startCmd = &cobra.Command{
 
 // 初始化
 func init() {
-	// 变量参数定义 定义全局
+	// 变量参数定义 持久性flags 全局
 	// serverCmd.PersistentFlags().BoolVar(&daemon, "d", false, "true: daemon start,default is false")
 
 	// 设置局部参数
-	startCmd.Flags().BoolP("daemon", "d", false, "是否开启守护进程")
-	serverCmd.AddCommand(startCmd)
+	upCmd.Flags().BoolP("daemon", "d", false, "是否开启守护进程")
+	serverCmd.AddCommand(upCmd)
 	rootCmd.AddCommand(serverCmd)
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// 根命令
 var rootCmd = &cobra.Command{
 	Use:   "tail [command]",
 	Short: "Gumiho tail",
