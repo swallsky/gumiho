@@ -1,9 +1,8 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+	"tail.com/bootstrap"
 )
 
 // 当前命令
@@ -21,8 +20,19 @@ var upCmd = &cobra.Command{
 	Short: "server up [flags]",
 	Run: func(cmd *cobra.Command, args []string) {
 		daemon, _ := cmd.Flags().GetBool("daemon")
-		fmt.Println(daemon)
-		fmt.Println("#v", args)
+		if daemon { //是否启动daemon进程
+			bootstrap.DaemonStart()
+		}
+		bootstrap.ServerStart()
+	},
+}
+
+// 停止服务
+var downCmd = &cobra.Command{
+	Use:   "stop",
+	Short: "Server stop ...",
+	Run: func(cmd *cobra.Command, args []string) {
+		bootstrap.ServerStop()
 	},
 }
 
@@ -32,7 +42,8 @@ func init() {
 	// serverCmd.PersistentFlags().BoolVar(&daemon, "d", false, "true: daemon start,default is false")
 
 	// 设置局部参数
-	upCmd.Flags().BoolP("daemon", "d", false, "是否开启守护进程")
-	serverCmd.AddCommand(upCmd)
+	upCmd.Flags().BoolP("daemon", "d", false, "是否开启守护进程") // 是否开启守护进程
+	serverCmd.AddCommand(upCmd)                           //启动服务
+	serverCmd.AddCommand(downCmd)                         // 停止服务
 	rootCmd.AddCommand(serverCmd)
 }
