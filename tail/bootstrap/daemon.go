@@ -37,7 +37,7 @@ func DaemonStart() {
 		panic(err)
 	}
 	//将当前进程id写入文件中
-	err = ioutil.WriteFile("./runtime/.pid", []byte(fmt.Sprint(c.Process.Pid)), 0755)
+	err = ioutil.WriteFile(Config.runtimeDir+"/.pid", []byte(fmt.Sprint(c.Process.Pid)), 0755)
 	if err != nil {
 		panic(err)
 	}

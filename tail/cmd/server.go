@@ -29,8 +29,8 @@ var upCmd = &cobra.Command{
 
 // 停止服务
 var downCmd = &cobra.Command{
-	Use:   "stop",
-	Short: "Server stop ...",
+	Use:   "down",
+	Short: "Server down ...",
 	Run: func(cmd *cobra.Command, args []string) {
 		bootstrap.ServerStop()
 	},

@@ -2,6 +2,7 @@ package bootstrap
 
 import (
 	"github.com/gin-gonic/gin"
+	"tail.com/app"
 )
 
 func InitRouter() *gin.Engine {
@@ -16,7 +17,7 @@ func InitRouter() *gin.Engine {
 	// r.Use(app.LoggerToFile())
 
 	// 首页
-	// r.GET("/")
+	r.GET("/", app.Home)
 
 	return r
 }

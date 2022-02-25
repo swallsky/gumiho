@@ -58,7 +58,7 @@ func listenSignal(httpSrv *http.Server) {
 func ServerStop() {
 	// host := Config.host
 	// port := Config.port
-	pid, err := ioutil.ReadFile("./runtime/.pid")
+	pid, err := ioutil.ReadFile(Config.runtimeDir + "/.pid")
 	if err != nil {
 		panic(err)
 	}
