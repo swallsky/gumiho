@@ -13,7 +13,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gin-gonic/gin"
+	"tail.com/app"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -28,6 +29,12 @@ func init() {
 	Server.initCmd()               //初始化命令行
 	Server.defStart()              // 定义命令开始
 	rootCmd.AddCommand(Server.Cmd) // 添加服务根命令
+	Server.Http = app.Http{
+		Server.Host,
+		Server.Port,
+		Server.LogFile,
+		Server.RuntimeDir,
+	}
 }
 
 // 基类
@@ -38,6 +45,7 @@ type Tail struct {
 	RuntimeDir string
 	Router     map[string]string // 路由配置
 	Cmd        *cobra.Command
+	Http       app.Http
 }
 
 // 初始化配置
@@ -142,31 +150,10 @@ func (t *Tail) daemonPro() {
 	os.Exit(0)
 }
 
-func (t *Tail) initRouter() *gin.Engine {
-	// 设置模式
-	// gin.SetMode(gin.DebugMode) //默认模式
-	// gin.SetMode(gin.ReleaseMode)
-	// gin.SetMode(gin.TestMode)
-
-	r := gin.Default()
-
-	// 首页
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"hello": "tail hooks",
-		})
-	})
-
-	// 执行远程脚本
-	// r.GET("/shell/:R", app.Shell)
-
-	return r
-}
-
 // 启动服务
 func (t *Tail) Start() {
 	//路由初始化
-	router := t.initRouter()
+	router := t.Http.InitRouter()
 	// 服务初始化
 	server := &http.Server{
 		Addr:         ":" + t.Port,
