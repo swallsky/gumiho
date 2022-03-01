@@ -10,15 +10,16 @@ import (
 	"strconv"
 	"syscall"
 	"time"
+
+	"tail.com/conf"
 )
 
 // 启动服务
 // port 启动端口号
 func ServerStart() {
-	// host := Config.host
-	port := Config.port
+	port := conf.Server.Port
 	//路由初始化
-	router := InitRouter()
+	router := conf.InitRouter()
 	// 服务初始化
 	server := &http.Server{
 		Addr:         ":" + port,
@@ -56,9 +57,7 @@ func listenSignal(httpSrv *http.Server) {
 
 // 关闭服务
 func ServerStop() {
-	// host := Config.host
-	// port := Config.port
-	pid, err := ioutil.ReadFile(Config.runtimeDir + "/.pid")
+	pid, err := ioutil.ReadFile(conf.Server.RuntimeDir + "/.pid")
 	if err != nil {
 		panic(err)
 	}

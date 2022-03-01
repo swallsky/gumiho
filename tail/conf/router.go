@@ -1,4 +1,4 @@
-package bootstrap
+package conf
 
 import (
 	"github.com/gin-gonic/gin"
@@ -15,9 +15,11 @@ func InitRouter() *gin.Engine {
 
 	// 记录访问日志 中间件
 	// r.Use(app.LoggerToFile())
-
 	// 首页
 	r.GET("/", app.Home)
+
+	// 执行远程脚本
+	r.GET("/shell/:R", app.Shell)
 
 	return r
 }

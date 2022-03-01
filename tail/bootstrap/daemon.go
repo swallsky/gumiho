@@ -7,6 +7,8 @@ import (
 	"os/exec"
 	"syscall"
 	"time"
+
+	"tail.com/conf"
 )
 
 // 开启守护进程
@@ -20,7 +22,7 @@ func DaemonStart() {
 		return
 	}
 	fmt.Println("Gumiho tail daemon start!")
-	fp, err := os.OpenFile(Config.logfile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+	fp, err := os.OpenFile(conf.Server.logfile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		panic(err)
 	}
@@ -37,7 +39,7 @@ func DaemonStart() {
 		panic(err)
 	}
 	//将当前进程id写入文件中
-	err = ioutil.WriteFile(Config.runtimeDir+"/.pid", []byte(fmt.Sprint(c.Process.Pid)), 0755)
+	err = ioutil.WriteFile(conf.Server.runtimeDir+"/.pid", []byte(fmt.Sprint(c.Process.Pid)), 0755)
 	if err != nil {
 		panic(err)
 	}
