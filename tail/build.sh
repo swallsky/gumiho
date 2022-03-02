@@ -11,6 +11,3 @@ cp -f conf.yaml build/conf.yaml
 
 # 拷贝相应的命令
 cp -rf script/ build/script/
-
-# 更改权限
-chmod +x script/*.sh

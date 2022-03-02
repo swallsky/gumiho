@@ -11,6 +11,9 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories 
 
 COPY ./build/ /opt/
 
+# 更改代码可执行权限
+RUN chmod +x /opt/script/*.sh
+
 WORKDIR /opt/
 
 CMD ["./tail","server","up"]
