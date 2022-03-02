@@ -34,6 +34,7 @@ func init() {
 		Host:       Server.Host,
 		Port:       Server.Port,
 		LogFile:    Server.LogFile,
+		RootDir:    Server.RootDir,
 		RuntimeDir: Server.RuntimeDir,
 		Router:     Server.Router,
 	}
@@ -44,6 +45,7 @@ type Tail struct {
 	Host       string
 	Port       string
 	LogFile    string
+	RootDir    string //项目根目录
 	RuntimeDir string
 	Router     map[string]string // 路由配置
 	Cmd        *cobra.Command
@@ -73,6 +75,7 @@ func (t *Tail) initConfig() {
 func (t *Tail) initResources() {
 	// 创建目录
 	if dir, err := os.Getwd(); err == nil {
+		t.RootDir = dir
 		t.RuntimeDir = dir + t.RuntimeDir
 	}
 
