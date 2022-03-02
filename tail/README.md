@@ -6,10 +6,10 @@
 
 ```
 # 编译docker镜像
-docker build -t ybluesky/golang:v1 .
+docker build -t ybluesky/gumiho-tail:v1 .
 
 # 运行docker环境
-docker run -d -p 8081:8081 --name gumiho-tail ybluesky/golang:v1 /opt/tail server up
+docker run -d -p 8081:8081 --name gumiho-tail ybluesky/gumiho-tail:v1 /opt/tail server up
 
 # 运行docker环境，自动重启
 docker run -d -p 8081:8081 --restart=always --name gumiho-tail ybluesky/golang:v1 /opt/tail server up
