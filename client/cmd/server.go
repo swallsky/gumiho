@@ -29,11 +29,12 @@ func init() {
 	Server.initCmd()               //初始化命令行
 	Server.defStart()              // 定义命令开始
 	rootCmd.AddCommand(Server.Cmd) // 添加服务根命令
+	// app.Http 初始化
 	Server.Http = app.Http{
-		Server.Host,
-		Server.Port,
-		Server.LogFile,
-		Server.RuntimeDir,
+		Host:       Server.Host,
+		Port:       Server.Port,
+		LogFile:    Server.LogFile,
+		RuntimeDir: Server.RuntimeDir,
 	}
 }
 
