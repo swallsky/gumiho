@@ -18,3 +18,7 @@ docker run -d -p 8081:8081 --restart=always --name gumiho-tail ybluesky/golang:v
 docker logs -f gumiho-tail
 
 ```
+### 动态执行命令行
+- conf.yaml router 为配置规则
+- script/*.sh 为可执行脚本
+- http://localhost:8081/script/:key :key为配置router的key

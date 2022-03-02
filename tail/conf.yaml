@@ -6,7 +6,7 @@ server:
   runtimeDir: /runtime
 # 路由规则
 router:
-  index: index.sh
+  test: test.sh
   index1: index.sh
   index2: index.sh
   index3: index.sh

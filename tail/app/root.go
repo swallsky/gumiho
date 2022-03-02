@@ -23,7 +23,7 @@ func (h *Http) InitRouter() *gin.Engine {
 	r.GET("/", h.home)
 
 	// 执行远程脚本
-	r.GET("/shell/:R", h.script)
+	r.GET("/script/:R", h.script)
 
 	return r
 }
