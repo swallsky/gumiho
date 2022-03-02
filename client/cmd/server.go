@@ -35,6 +35,7 @@ func init() {
 		Port:       Server.Port,
 		LogFile:    Server.LogFile,
 		RuntimeDir: Server.RuntimeDir,
+		Router:     Server.Router,
 	}
 }
 

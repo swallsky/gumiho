@@ -7,6 +7,7 @@ type Http struct {
 	Port       string
 	LogFile    string
 	RuntimeDir string
+	Router     map[string]string // 路由配置
 }
 
 func (h *Http) InitRouter() *gin.Engine {
@@ -21,7 +22,7 @@ func (h *Http) InitRouter() *gin.Engine {
 	r.GET("/", h.Home)
 
 	// 执行远程脚本
-	// r.GET("/shell/:R", app.Shell)
+	r.GET("/shell/:R", h.Shell)
 
 	return r
 }
