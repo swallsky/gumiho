@@ -1,0 +1,6 @@
+# 服务端配置信息
+server:
+  logfile: daemon.log
+  host: 127.0.0.1
+  port: 8080
+  runtimeDir: /runtime
