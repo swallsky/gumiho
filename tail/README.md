@@ -17,6 +17,9 @@ docker run -d -p 8081:8081 --restart=always --name gumiho-tail ybluesky/golang:v
 # 查看docker运行日志
 docker logs -f gumiho-tail
 
+# 推送docker镜像到docker hub
+docker push ybluesky/gumiho-tail:v1
+
 ```
 ### 动态执行命令行
 - conf.yaml router 为配置规则
