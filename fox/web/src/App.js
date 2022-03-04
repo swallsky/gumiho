@@ -1,11 +1,18 @@
-import React from 'react';
-import { Button } from 'antd';
-import './App.css';
+import React from "react";
 
-const App = () => (
-  <div className="App">
-    <Button type="primary">说明</Button>
-  </div>
-);
+import { Button } from "antd";
 
-export default App;
+import "./App.css";
+
+export default function App() {
+  return (
+    <div>
+      <Button type="primary">Primary Button</Button>
+      <Button>Default Button</Button>
+      <Button type="dashed">Dashed Button</Button>
+      <br />
+      <Button type="text">Text Button</Button>
+      <Button type="link">Link Button</Button>
+    </div>
+  );
+}
