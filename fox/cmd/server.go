@@ -35,7 +35,6 @@ func init() {
 		LogFile:    Server.LogFile,
 		RootDir:    Server.RootDir,
 		RuntimeDir: Server.RuntimeDir,
-		StaticDir:  Server.StaticDir, //静态页面
 	}
 }
 
@@ -46,7 +45,6 @@ type Fox struct {
 	LogFile    string
 	RootDir    string //项目根目录
 	RuntimeDir string
-	StaticDir  string //前台静态网面
 	Cmd        *cobra.Command
 	Http       app.Http
 }
@@ -64,7 +62,6 @@ func (t *Fox) initConfig() {
 	t.Host = conf.GetString("server.host")             //监听主机ip
 	t.Port = conf.GetString("server.port")             //监听端口
 	t.RuntimeDir = conf.GetString("server.runtimeDir") //运行时目录
-	t.StaticDir = conf.GetString("server.StaticDir")   //前端网页
 }
 
 // 初始化资源
